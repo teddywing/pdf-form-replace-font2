@@ -24,7 +24,7 @@ public class Main {
 			PdfFormField field = entry.getValue();
 
 			PdfFont original_font = field.getFont();
-			// System.out.println("Font: " + original_font);
+			System.out.println("Font: " + field.getFontSize());
 
 			String original_postscript_name = original_font
 				.getFontProgram()
