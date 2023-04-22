@@ -20,8 +20,20 @@ public class Main {
 		Map<String, PdfFormField> fields = form.getFormFields();
 
 		for (var entry : fields.entrySet()) {
+			// TODO: Try printing original font family and size on field.
 			PdfFormField field = entry.getValue();
-			field.setFont(courier);
+
+			PdfFont original_font = field.getFont();
+			// System.out.println("Font: " + original_font);
+
+			String original_postscript_name = original_font
+				.getFontProgram()
+				.getFontNames()
+				.getFontName();
+
+			if (original_postscript_name.equals("HelveticaLTStd-Bold")) {
+				field.setFont(courier);
+			}
 		}
 
 		pdf.close();
