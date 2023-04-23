@@ -18,10 +18,21 @@ import java.util.Map;
 public class App {
 
 	public static void main(String[] args) throws IOException {
-		PdfDocument pdf = new PdfDocument(
+		App.replacePdfFieldFont(
 			new PdfReader("f1040.pdf"),
-			new PdfWriter("f1040-courier.pdf")
+			new PdfWriter("f1040-courier.pdf"),
+			"HelveticaLTStd-Bold",
+			"CourierNewPSMT"
 		);
+	}
+
+	private static void replacePdfFieldFont(
+		PdfReader reader,
+		PdfWriter writer,
+		String original_font_postscript_name,
+		String replacement_font_postscript_name
+	) throws IOException {
+		PdfDocument pdf = new PdfDocument(reader, writer);
 
 		FontProgramFactory
 			.registerFontDirectory("/System/Library/Fonts/Supplemental/");
@@ -30,7 +41,7 @@ public class App {
 		System.out.println(FontProgramFactory.getRegisteredFontFamilies());
 
 		FontProgram courier_program = FontProgramFactory
-			.createRegisteredFont("CourierNewPSMT");
+			.createRegisteredFont(replacement_font_postscript_name);
 		PdfFont courier = PdfFontFactory.createFont(
 			courier_program,
 			PdfEncodings.UTF8,
@@ -49,11 +60,12 @@ public class App {
 				.getFontNames()
 				.getFontName();
 
-			if (original_postscript_name.equals("HelveticaLTStd-Bold")) {
+			if (original_postscript_name.equals(original_font_postscript_name)) {
 				field.setFont(courier);
 			}
 		}
 
 		pdf.close();
 	}
+
 }
