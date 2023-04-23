@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.teddywing.pdf-form-replace-font2</groupId>
+  <groupId>com.teddywing.pdf_form_replace_font2</groupId>
   <artifactId>pdf-form-replace-font2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 

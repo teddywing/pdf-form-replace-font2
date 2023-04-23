@@ -1,4 +1,4 @@
-package com.teddywing.pdf-form-replace-font2;
+package com.teddywing.pdf_form_replace_font2;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
