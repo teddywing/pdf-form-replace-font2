@@ -38,7 +38,7 @@ public class Main {
 		FontProgram courier_program = FontProgramFactory
 			.createFont("/System/Library/Fonts/Supplemental/Copperplate.ttc", 0, false);
 		PdfFont courier = PdfFontFactory
-			.createFont(courier_program, PdfEncodings.UTF8, PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+			.createFont(courier_program, PdfEncodings.UTF8, PdfFontFactory.EmbeddingStrategy.FORCE_NOT_EMBEDDED);
 
 		PdfAcroForm form = PdfAcroForm.getAcroForm(pdf, false);
 		Map<String, PdfFormField> fields = form.getFormFields();
