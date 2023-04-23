@@ -1,3 +1,5 @@
 *.class
 
 *.pdf
+
+/target/
