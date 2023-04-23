@@ -31,12 +31,12 @@ public class Main {
 		// FontProgram courier_program = FontProgramFactory.createFont("CourierNewPSMT");
 		// FontProgram courier_program = FontProgramFactory
 		// 	.createFont("/System/Library/Fonts/Supplemental/Courier New.ttf");
-		// FontProgram courier_program = FontProgramFactory
-		// 	.createRegisteredFont("CourierNewPSMT");
+		FontProgram courier_program = FontProgramFactory
+			.createRegisteredFont("CourierNewPSMT");
 		// FontProgram courier_program = FontProgramFactory
 		// 	.createFont("Courier New.ttf");
-		FontProgram courier_program = FontProgramFactory
-			.createFont("/System/Library/Fonts/Supplemental/Copperplate.ttc", 0, false);
+		// FontProgram courier_program = FontProgramFactory
+		// 	.createFont("/System/Library/Fonts/Supplemental/Copperplate.ttc", 0, false);
 		PdfFont courier = PdfFontFactory
 			.createFont(courier_program, PdfEncodings.UTF8, PdfFontFactory.EmbeddingStrategy.FORCE_NOT_EMBEDDED);
 
