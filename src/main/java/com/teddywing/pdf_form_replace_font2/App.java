@@ -20,7 +20,9 @@ import com.itextpdf.forms.PdfAcroForm;
 import com.itextpdf.forms.fields.PdfFormField;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.Properties;
 
 public class App {
 
@@ -47,6 +49,17 @@ public class App {
 			if (should_show_help) {
 				HelpFormatter help_formatter = new HelpFormatter();
 				help_formatter.printHelp("pdf-form-replace-font2", options);
+
+				System.exit(0);
+			}
+
+			if (should_show_version) {
+				Properties properties = new Properties();
+				InputStream stream = App.class.getResourceAsStream("/META-INF/maven/com.teddywing.pdf_form_replace_font2/pdf-form-replace-font2/pom.properties");
+				properties.load(stream);
+				String version = properties.getProperty("version", "");
+
+				System.out.println(version);
 
 				System.exit(0);
 			}
