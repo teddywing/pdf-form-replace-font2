@@ -39,13 +39,7 @@ public class App {
 		try {
 			CommandLine options_matches = option_parser.parse(options, args);
 
-			String find = options_matches.getOptionValue("find");
-			String replace = options_matches.getOptionValue("replace");
-			String output = options_matches.getOptionValue("output");
-
 			boolean should_show_help = options_matches.hasOption("help");
-			boolean should_show_version = options_matches.hasOption("version");
-
 			if (should_show_help) {
 				HelpFormatter help_formatter = new HelpFormatter();
 				help_formatter.printHelp("pdf-form-replace-font2", options);
@@ -53,6 +47,7 @@ public class App {
 				System.exit(0);
 			}
 
+			boolean should_show_version = options_matches.hasOption("version");
 			if (should_show_version) {
 				Properties properties = new Properties();
 				InputStream stream = App.class.getResourceAsStream("/META-INF/maven/com.teddywing.pdf_form_replace_font2/pdf-form-replace-font2/pom.properties");
@@ -63,6 +58,31 @@ public class App {
 
 				System.exit(0);
 			}
+
+			String input = "-";
+			String[] free_args = options_matches.getArgs();
+			if (free_args.length > 0) {
+				input = free_args[0];
+			}
+
+			String find = options_matches.getOptionValue("find");
+			if (find == null) {
+				System.err.println("error: required option 'find' missing");
+				System.exit(64);
+			}
+
+			String replace = options_matches.getOptionValue("replace");
+			if (replace == null) {
+				System.err.println("error: required option 'replace' missing");
+				System.exit(64);
+			}
+
+			String output = options_matches.getOptionValue("output");
+			if (output == null) {
+				output = "-";
+			}
+
+			System.out.println("i:" + input + " f:" + find + " r:" + replace + " o:" + output);
 		}
 		catch (ParseException e) {
 			System.err.println("error: " + e.getMessage());
