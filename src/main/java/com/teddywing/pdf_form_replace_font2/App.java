@@ -82,27 +82,36 @@ public class App {
 				output = "-";
 			}
 
-			System.out.println("i:" + input + " f:" + find + " r:" + replace + " o:" + output);
+			App.replacePdfFieldFont(input, output, find, replace);
 		}
 		catch (ParseException e) {
 			System.err.println("error: " + e.getMessage());
 			System.exit(64);
 		}
-
-		App.replacePdfFieldFont(
-			new PdfReader("f1040.pdf"),
-			new PdfWriter("f1040-courier.pdf"),
-			"HelveticaLTStd-Bold",
-			"CourierNewPSMT"
-		);
 	}
 
 	private static void replacePdfFieldFont(
-		PdfReader reader,
-		PdfWriter writer,
+		String input,
+		String output,
 		String original_font_postscript_name,
 		String replacement_font_postscript_name
 	) throws IOException {
+		PdfReader reader;
+		if (input == "-") {
+			reader = new PdfReader(System.in);
+		}
+		else {
+			reader = new PdfReader(input);
+		}
+
+		PdfWriter writer;
+		if (output == "-") {
+			writer = new PdfWriter(System.out);
+		}
+		else {
+			writer = new PdfWriter(output);
+		}
+
 		PdfDocument pdf = new PdfDocument(reader, writer);
 
 		FontProgramFactory
