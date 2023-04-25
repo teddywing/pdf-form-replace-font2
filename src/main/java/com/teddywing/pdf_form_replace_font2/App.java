@@ -131,7 +131,7 @@ public class App {
 		PdfAcroForm form = PdfAcroForm.getAcroForm(pdf, false);
 		Map<String, PdfFormField> fields = form.getFormFields();
 
-		for (var entry : fields.entrySet()) {
+		for (Map.Entry<String, PdfFormField> entry : fields.entrySet()) {
 			PdfFormField field = entry.getValue();
 
 			PdfFont original_font = field.getFont();
