@@ -120,6 +120,8 @@ public class App {
 			.registerFontDirectory("/System/Library/Fonts/");
 		FontProgramFactory
 			.registerFontDirectory("/System/Library/Fonts/Supplemental/");
+		FontProgramFactory
+			.registerFontDirectory(System.getProperty("user.home") + "/Library/Fonts/");
 
 		System.out.println(FontProgramFactory.getRegisteredFonts());
 		System.out.println(FontProgramFactory.getRegisteredFontFamilies());
