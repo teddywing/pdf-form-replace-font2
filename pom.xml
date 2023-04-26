@@ -30,7 +30,7 @@ along with PDF Form Replace Font2. If not, see
   <packaging>jar</packaging>
 
   <name>pdf-form-replace-font2</name>
-  <description>A simple pdf-form-replace-font2.</description>
+  <description>Replace a given font in a PDF form's fields with a different one.</description>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
