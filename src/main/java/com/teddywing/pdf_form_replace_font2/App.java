@@ -134,9 +134,6 @@ public class App {
 		FontProgramFactory
 			.registerFontDirectory(System.getProperty("user.home") + "/Library/Fonts/");
 
-		System.out.println(FontProgramFactory.getRegisteredFonts());
-		System.out.println(FontProgramFactory.getRegisteredFontFamilies());
-
 		FontProgram courier_program = FontProgramFactory
 			.createRegisteredFont(replacement_font_postscript_name);
 		PdfFont courier = PdfFontFactory.createFont(
