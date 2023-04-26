@@ -56,6 +56,12 @@ $(RELEASE_PRODUCT): $(SOURCES)
 	mvn package
 
 
+.PHONY: release
+release:
+	mvn release:prepare
+	mvn release:perform
+
+
 .PHONY: install
 install: $(RELEASE_PRODUCT) $(MAN_PAGE)
 	install -d $(DESTDIR)$(datarootdir)/java

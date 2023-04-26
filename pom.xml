@@ -40,6 +40,10 @@ along with PDF Form Replace Font2. If not, see
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <scm>
+    <developerConnection>scm:git:file://${project.basedir}</developerConnection>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>com.itextpdf</groupId>
@@ -98,6 +102,10 @@ along with PDF Form Replace Font2. If not, see
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
