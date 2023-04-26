@@ -17,9 +17,18 @@
 # <https://www.gnu.org/licenses/>.
 
 
+prefix ?= /usr/local
+exec_prefix ?= $(prefix)
+bindir ?= $(exec_prefix)/bin
+datarootdir ?= $(prefix)/share
+mandir ?= $(datarootdir)/man
+man1dir ?= $(mandir)/man1
+
+
 VERSION := $(shell grep '^  <version>' pom.xml | sed -e 's/  <version>//' -e 's,</version>,,')
 
 SOURCES := $(shell find src -name '*.java')
+RELEASE_PRODUCT := target/pdf-form-replace-font2-$(VERSION).jar
 
 MAN_PAGE := doc/pdf-form-replace-font2.1
 
@@ -41,7 +50,24 @@ run: compile
 
 
 .PHONY: package
-package: target/pdf-form-replace-font2-$(VERSION).jar
+package: $(RELEASE_PRODUCT)
 
-target/pdf-form-replace-font2-$(VERSION).jar: $(SOURCES)
+$(RELEASE_PRODUCT): $(SOURCES)
 	mvn package
+
+
+.PHONY: install
+install: $(RELEASE_PRODUCT) $(MAN_PAGE)
+	install -d $(DESTDIR)$(datarootdir)/java
+	install -m 644 $(RELEASE_PRODUCT) $(DESTDIR)$(datarootdir)/java
+
+	install -d $(DESTDIR)$(bindir)
+	m4 \
+		--define="JAR_PATH=$(DESTDIR)$(datarootdir)/java/pdf-form-replace-font2-$(VERSION).jar" \
+		pdf-form-replace-font2.in \
+		> pdf-form-replace-font2
+	install -m 755 pdf-form-replace-font2 \
+		$(DESTDIR)$(bindir)
+
+	install -d $(DESTDIR)$(man1dir)
+	install -m 644 $(MAN_PAGE) $(DESTDIR)$(man1dir)
