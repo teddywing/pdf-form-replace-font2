@@ -1,7 +1,17 @@
 CLASSPATH := -classpath '.:./lib/*'
 
+MAN_PAGE := doc/pdf-form-replace-font2.1
+
 all:
 	javac $(CLASSPATH) Main.java
+
+
+.PHONY: doc
+doc: $(MAN_PAGE)
+
+$(MAN_PAGE): $(MAN_PAGE).txt
+	a2x --no-xmllint --format manpage $<
+
 
 .PHONY: compile
 compile:

@@ -1,0 +1,88 @@
+'\" t
+.\"     Title: pdf-form-replace-font2
+.\"    Author: [FIXME: author] [see http://www.docbook.org/tdg5/en/html/author]
+.\" Generator: DocBook XSL Stylesheets vsnapshot <http://docbook.sf.net/>
+.\"      Date: 04/26/2023
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "PDF\-FORM\-REPLACE\-" "1" "04/26/2023" "\ \&" "\ \&"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+pdf-form-replace-font2 \- Replace a font in a PDF form
+.SH "SYNOPSIS"
+.sp
+\fBpdf\-form\-replace\-font2\fR \-\-fill \fIoriginal_font\fR \-\-replace \fIreplacement_font\fR [options] [\fIpdf_file\fR]
+.SH "DESCRIPTION"
+.sp
+Replace a font used in the input PDF\(cqs form fields\&. If no input path is given, the PDF will be read from standard input\&.
+.sp
+Given a PostScript font name used in form fields in the input PDF, those fields will be changed to use the replacement typeface\&.
+.SH "OPTIONS"
+.PP
+\-f, \-\-find
+.RS 4
+PostScript name of the font that will be replaced\&.
+.RE
+.PP
+\-r, \-\-replace
+.RS 4
+PostScript name of the replacement font\&.
+.RE
+.PP
+\-o, \-\-output
+.RS 4
+The output PDF path\&. If this option is not given, or if the value is given as "\-", the PDF will output to standard output\&.
+.RE
+.PP
+\-h, \-\-help
+.RS 4
+Print usage help\&.
+.RE
+.PP
+\-V, \-\-version
+.RS 4
+Print the program version\&.
+.RE
+.SH "LIMITATIONS"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The replacement font is not embedded in the output PDF\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Font size cannot be changed\&.
+.RE
