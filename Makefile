@@ -17,6 +17,10 @@
 # <https://www.gnu.org/licenses/>.
 
 
+VERSION := $(shell grep '^  <version>' pom.xml | sed -e 's/  <version>//' -e 's,</version>,,')
+
+SOURCES := $(shell find src -name '*.java')
+
 MAN_PAGE := doc/pdf-form-replace-font2.1
 
 
@@ -34,3 +38,10 @@ compile:
 .PHONY: run
 run: compile
 	mvn exec:java -Dexec.mainClass='com.teddywing.pdf_form_replace_font2.App'
+
+
+.PHONY: package
+package: target/pdf-form-replace-font2-$(VERSION).jar
+
+target/pdf-form-replace-font2-$(VERSION).jar: $(SOURCES)
+	mvn package
