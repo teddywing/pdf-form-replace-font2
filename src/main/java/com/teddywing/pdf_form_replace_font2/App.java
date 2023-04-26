@@ -115,6 +115,10 @@ public class App {
 		PdfDocument pdf = new PdfDocument(reader, writer);
 
 		FontProgramFactory
+			.registerFontDirectory("/Library/Fonts/");
+		FontProgramFactory
+			.registerFontDirectory("/System/Library/Fonts/");
+		FontProgramFactory
 			.registerFontDirectory("/System/Library/Fonts/Supplemental/");
 
 		System.out.println(FontProgramFactory.getRegisteredFonts());
