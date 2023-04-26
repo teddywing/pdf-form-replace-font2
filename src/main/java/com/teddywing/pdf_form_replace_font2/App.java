@@ -78,10 +78,14 @@ public class App {
 				System.exit(0);
 			}
 
-			String input = "-";
+			PdfReader reader;
 			String[] free_args = options_matches.getArgs();
-			if (free_args.length > 0) {
-				input = free_args[0];
+			if (free_args.length == 0) {
+				reader = new PdfReader(System.in);
+			}
+			else {
+				String input = free_args[0];
+				reader = new PdfReader(input);
 			}
 
 			String find = options_matches.getOptionValue("find");
@@ -96,12 +100,16 @@ public class App {
 				System.exit(64);
 			}
 
+			PdfWriter writer;
 			String output = options_matches.getOptionValue("output");
 			if (output == null) {
-				output = "-";
+				writer = new PdfWriter(System.out);
+			}
+			else {
+				writer = new PdfWriter(output);
 			}
 
-			App.replacePdfFieldFont(input, output, find, replace);
+			App.replacePdfFieldFont(reader, writer, find, replace);
 		}
 		catch (ParseException e) {
 			System.err.println("error: " + e.getMessage());
@@ -110,27 +118,11 @@ public class App {
 	}
 
 	private static void replacePdfFieldFont(
-		String input,
-		String output,
+		PdfReader reader,
+		PdfWriter writer,
 		String original_font_postscript_name,
 		String replacement_font_postscript_name
 	) throws IOException {
-		PdfReader reader;
-		if (input == "-") {
-			reader = new PdfReader(System.in);
-		}
-		else {
-			reader = new PdfReader(input);
-		}
-
-		PdfWriter writer;
-		if (output == "-") {
-			writer = new PdfWriter(System.out);
-		}
-		else {
-			writer = new PdfWriter(output);
-		}
-
 		PdfDocument pdf = new PdfDocument(reader, writer);
 
 		FontProgramFactory
