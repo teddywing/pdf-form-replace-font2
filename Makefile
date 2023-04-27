@@ -50,10 +50,16 @@ run: compile
 
 
 .PHONY: package
-package: $(RELEASE_PRODUCT)
+package: $(RELEASE_PRODUCT) pdf-form-replace-font2
 
 $(RELEASE_PRODUCT): $(SOURCES)
 	mvn package $(MVNFLAGS)
+
+pdf-form-replace-font2: pdf-form-replace-font2.in
+	m4 \
+		--define="JAR_PATH=$(DESTDIR)$(datarootdir)/java/pdf-form-replace-font2-$(VERSION).jar" \
+		$< \
+		> $@
 
 
 .PHONY: release
@@ -63,15 +69,11 @@ release:
 
 
 .PHONY: install
-install: $(RELEASE_PRODUCT) $(MAN_PAGE)
+install: $(RELEASE_PRODUCT) pdf-form-replace-font2 $(MAN_PAGE)
 	install -d $(DESTDIR)$(datarootdir)/java
 	install -m 644 $(RELEASE_PRODUCT) $(DESTDIR)$(datarootdir)/java
 
 	install -d $(DESTDIR)$(bindir)
-	m4 \
-		--define="JAR_PATH=$(DESTDIR)$(datarootdir)/java/pdf-form-replace-font2-$(VERSION).jar" \
-		pdf-form-replace-font2.in \
-		> pdf-form-replace-font2
 	install -m 755 pdf-form-replace-font2 \
 		$(DESTDIR)$(bindir)
 
