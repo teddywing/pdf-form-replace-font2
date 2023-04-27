@@ -42,24 +42,24 @@ $(MAN_PAGE): $(MAN_PAGE).txt
 
 .PHONY: compile
 compile:
-	mvn compile
+	mvn compile $(MVNFLAGS)
 
 .PHONY: run
 run: compile
-	mvn exec:java -Dexec.mainClass='com.teddywing.pdf_form_replace_font2.App'
+	mvn exec:java $(MVNFLAGS) -Dexec.mainClass='com.teddywing.pdf_form_replace_font2.App'
 
 
 .PHONY: package
 package: $(RELEASE_PRODUCT)
 
 $(RELEASE_PRODUCT): $(SOURCES)
-	mvn package
+	mvn package $(MVNFLAGS)
 
 
 .PHONY: release
 release:
-	mvn release:prepare
-	mvn release:perform
+	mvn release:prepare $(MVNFLAGS)
+	mvn release:perform $(MVNFLAGS)
 
 
 .PHONY: install
