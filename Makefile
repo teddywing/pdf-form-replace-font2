@@ -65,7 +65,6 @@ pdf-form-replace-font2: pdf-form-replace-font2.in
 .PHONY: release
 release:
 	mvn release:prepare $(MVNFLAGS)
-	mvn release:perform $(MVNFLAGS)
 
 
 .PHONY: install
