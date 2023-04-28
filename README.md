@@ -19,7 +19,13 @@ specified by their PostScript names):
 
 
 ## Install
-TODO
+Mac OS X users can install with MacPorts, after [adding a custom repository
+source][teddywing ports repository]:
+
+	$ sudo port install pdf-form-replace-font2
+
+
+[teddywing ports repository]: https://github.com/teddywing/macports-ports#adding-this-repository-source
 
 
 ## License
