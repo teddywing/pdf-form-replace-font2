@@ -65,7 +65,9 @@ pdf-form-replace-font2: pdf-form-replace-font2.in
 .PHONY: release
 release:
 	mvn release:prepare $(MVNFLAGS)
-	git tag --annotate v$(VERSION) --force "$$(git rev-parse v$(VERSION)^{})"
+	git tag --annotate v$(VERSION:-SNAPSHOT=) \
+		--force \
+		"$$(git rev-parse v$(VERSION:-SNAPSHOT=)^{})"
 
 
 .PHONY: install
