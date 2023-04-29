@@ -25,6 +25,8 @@ mandir ?= $(datarootdir)/man
 man1dir ?= $(mandir)/man1
 
 
+MVN := mvn
+
 VERSION := $(shell grep '^  <version>' pom.xml | sed -e 's/  <version>//' -e 's,</version>,,')
 
 SOURCES := $(shell find src -name '*.java')
@@ -42,18 +44,18 @@ $(MAN_PAGE): $(MAN_PAGE).txt
 
 .PHONY: compile
 compile:
-	mvn compile $(MVNFLAGS)
+	$(MVN) compile $(MVNFLAGS)
 
 .PHONY: run
 run: compile
-	mvn exec:java $(MVNFLAGS) -Dexec.mainClass='com.teddywing.pdf_form_replace_font2.App'
+	$(MVN) exec:java $(MVNFLAGS) -Dexec.mainClass='com.teddywing.pdf_form_replace_font2.App'
 
 
 .PHONY: package
 package: $(RELEASE_PRODUCT) pdf-form-replace-font2
 
 $(RELEASE_PRODUCT): $(SOURCES)
-	mvn package $(MVNFLAGS)
+	$(MVN) package $(MVNFLAGS)
 
 pdf-form-replace-font2: pdf-form-replace-font2.in
 	m4 \
@@ -64,7 +66,7 @@ pdf-form-replace-font2: pdf-form-replace-font2.in
 
 .PHONY: release
 release:
-	mvn release:prepare $(MVNFLAGS)
+	$(MVN) release:prepare $(MVNFLAGS)
 	git tag --annotate v$(VERSION:-SNAPSHOT=) \
 		--force \
 		"$$(git rev-parse v$(VERSION:-SNAPSHOT=)^{})"
